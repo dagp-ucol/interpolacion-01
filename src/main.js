@@ -115,9 +115,6 @@ function interLagrangeDOS() {
 }
 
 
-
-
-
 // Funciones Reutilizables
 
 function noDisponible() {
