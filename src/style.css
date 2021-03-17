@@ -52,4 +52,9 @@ button {
 
 .hello {
     color: rgb(14, 10, 231);
+    font: bold;
+}
+
+.formulas {
+    color: rgb(21, 107, 9);
 }

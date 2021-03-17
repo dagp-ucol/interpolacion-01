@@ -84,7 +84,34 @@ function interLagrangeUNO() {
 
 
 function interLagrangeDOS() {
-    noDisponible()
+    let x = Number(prompt('Introduce X -> (Valor a Calcular)'));
+    comprobar(x);
+
+    let x0 = Number(prompt('Introduce X0 -> (Valor ya conocido)'));
+    comprobar(x0);
+
+    let x1 = Number(prompt('Introduce X1 -> (Valor ya conocido)'));
+    comprobar(x1);
+
+    let x2 = Number(prompt('Introduce X2 -> (Valor ya conocido)'));
+    comprobar(x2);
+
+    let fx0 = Number(prompt('Introduce FX0 -> (Valor ya conocido)'));
+    comprobar(fx0);
+
+    let fx1= Number(prompt('Introduce FX1 -> (Valor ya conocido)'));
+    comprobar(fx1);
+
+    let fx2= Number(prompt('Introduce FX2 -> (Valor ya conocido)'));
+    comprobar(fx2);
+
+    let op1 = ((((x-x1)/(x0-x1))*((x-x2)/(x0-x2)))*fx0);     
+    let op2 = ((((x-x0)/(x1-x0))*((x-x2)/(x1-x2)))*fx1);
+    let op3 = ((((x-x0)/(x2-x0))*((x-x1)/(x2-x1)))*fx2);
+    let resultado = Number(op1 + op2 + op3);
+    
+        anunciarResultado(resultado);
+        return resultado;
 }
 
 
@@ -95,6 +122,10 @@ function interLagrangeDOS() {
 
 function noDisponible() {
     alert('Operación NO Disponible')
+}
+
+function proximamente() {
+    alert('PRÓXIMAMENTE...')
 }
 
 function noValido(value) {
