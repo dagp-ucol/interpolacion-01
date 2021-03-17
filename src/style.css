@@ -8,8 +8,9 @@ h1, p, a {
     font-family: 'Carrois Gothic SC', sans-serif;
     display: block;
     text-align: center;
-    line-height:.8;
+    line-height:.3;
     color: white;
+    font: bold;
 }
 .contenido {
     max-width: 1200px;
@@ -19,13 +20,30 @@ h1, p, a {
     font-family: 'Carrois Gothic SC', sans-serif;
 }
 h1 {
-    font-size: 4rem;
+    font-size: 2.3rem;
 }
 a {
     font-size: 1.4rem;
 }
 p {
-    font-size: 2.2rem;
+    font-size: 1.2rem;
+    color: rgb(228, 95, 18);
+    font: bold;
+}
+
+table {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+}
+
+button {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+    width: 100%;
 }
 
 .hashtag {

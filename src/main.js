@@ -2,7 +2,6 @@
 // Alumno: Diego Alejandro Gentner Polanco
 // 2do Semestre Grupo "H"
 
-let x = prompt('Hola')
 import Metnum from './operaciones.js'
 
 let test01 = new Metnum();
