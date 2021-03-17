@@ -60,7 +60,25 @@ function interCuadratica() {
 
 
 function interLagrangeUNO() {
-    noDisponible()
+    let x = Number(prompt('Introduce X -> (Valor a Calcular)'));
+    comprobar(x);
+
+    let x0 = Number(prompt('Introduce X0 -> (Valor ya conocido)'));
+    comprobar(x0);
+
+    let x1 = Number(prompt('Introduce X1 -> (Valor ya conocido)'));
+    comprobar(x1);
+
+    let fx0 = Number(prompt('Introduce FX0 -> (Valor ya conocido)'));
+    comprobar(fx0);
+
+    let fx1= Number(prompt('Introduce FX1 -> (Valor ya conocido)'));
+    comprobar(fx1);
+
+    let resultado = Number((((x-x1)/(x0-x1))*(fx0))+(((x-x0)/(x1-x0))*(fx1)));       
+    
+        anunciarResultado(resultado);
+        return resultado;    
 }
 
 
