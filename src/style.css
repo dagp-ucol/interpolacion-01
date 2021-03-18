@@ -58,3 +58,8 @@ button {
 .formulas {
     color: rgb(21, 107, 9);
 }
+
+.img-border {
+    border: transparent 10px solid;
+    image-rendering: crisp-edges;
+}
