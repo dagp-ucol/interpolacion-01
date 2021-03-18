@@ -51,7 +51,7 @@ function interCuadratica() {
     
     let op1 = ((fx1-fx0)/(x1-x0));
     let op2 = (((fx2-fx1)/(x2-x1))-((fx1-fx0)/(x1-x0)))/(x2-x0);
-    let resultado = Number(fx0+op1*(x-x0)+op2*(x-x0)*(x-x1));
+    let resultado = Number((fx0) + (op1*(x-x0)) + (op2*(x-x0)*(x-x1)));
     
         anunciarResultado(resultado);
         return resultado;
