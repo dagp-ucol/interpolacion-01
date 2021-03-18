@@ -125,14 +125,10 @@ function proximamente() {
     alert('PRÓXIMAMENTE...')
 }
 
-function noValido(value) {
-    alert(`DATO NO VÁLIDO = ${value}`)
-    return javascript_abort()
-}
-
 function comprobar(value) {
     if (Number.isNaN(value) === true || value === undefined) {
-        return noValido(value);
+        alert(`DATO NO VÁLIDO = ${value}`)
+        return javascript_abort();
     }
 }
 
