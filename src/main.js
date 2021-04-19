@@ -114,6 +114,24 @@ function interLagrangeDOS() {
         return resultado;
 }
 
+function valorRelativo() {
+
+    let valorReal = Number(prompt('Introduce el VALOR REAL'));
+    comprobar(valorReal);
+
+    let valorAprox = Number(prompt('Introduce el VALOR APROXIMADO'));
+    comprobar(valorAprox);
+
+    let errorVerdadero = valorReal - valorAprox;
+    let errorRelativo = (errorVerdadero / valorReal) * 100;
+
+    anunciarResultado2(`
+    Error Verdadero: ${errorVerdadero}
+    Error Relativo: ${errorRelativo.toFixed(3)}%`);
+    return resultado;
+
+}
+
 
 // Funciones Reutilizables
 
@@ -143,5 +161,14 @@ function anunciarResultado(value) {
         alert(`VALORES NO VÁLIDOS`);
     } else {
         alert(`El RESULTADO de F(X) = ${value}`);
+    }
+}
+
+function anunciarResultado2(value) {
+    console.log('Resultado = ' + value);
+    if (Number.isNaN(value) === true) {
+        alert(`VALORES NO VÁLIDOS`);
+    } else {
+        alert(`El RESULTADO = ${value}`);
     }
 }
