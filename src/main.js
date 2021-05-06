@@ -3,19 +3,20 @@
 // 2do Semestre Grupo "H"
 
 function interLineal() {
-    let x = Number(prompt('Introduce X -> (Valor a Calcular)'));
+    let x = (prompt('Introduce X -> (Valor a Calcular)'));
     comprobar(x);
+    console.log(x);
 
-    let x0 = Number(prompt('Introduce X0 -> (Valor ya conocido)'));
+    let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
     comprobar(x0);
 
-    let x1 = Number(prompt('Introduce X1 -> (Valor ya conocido)'));
+    let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
     comprobar(x1);
 
-    let fx0 = Number(prompt('Introduce FX0 -> (Valor ya conocido)'));
+    let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
     comprobar(fx0);
 
-    let fx1= Number(prompt('Introduce FX1 -> (Valor ya conocido)'));
+    let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
     comprobar(fx1);
 
     
@@ -28,25 +29,25 @@ function interLineal() {
 
 
 function interCuadratica() {
-    let x = Number(prompt('Introduce X -> (Valor a Calcular)'));
+    let x = (prompt('Introduce X -> (Valor a Calcular)'));
     comprobar(x);
 
-    let x0 = Number(prompt('Introduce X0 -> (Valor ya conocido)'));
+    let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
     comprobar(x0);
 
-    let x1 = Number(prompt('Introduce X1 -> (Valor ya conocido)'));
+    let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
     comprobar(x1);
 
-    let x2 = Number(prompt('Introduce X2 -> (Valor ya conocido)'));
+    let x2 = (prompt('Introduce X2 -> (Valor ya conocido)'));
     comprobar(x2);
 
-    let fx0 = Number(prompt('Introduce FX0 -> (Valor ya conocido)'));
+    let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
     comprobar(fx0);
 
-    let fx1= Number(prompt('Introduce FX1 -> (Valor ya conocido)'));
+    let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
     comprobar(fx1);
 
-    let fx2= Number(prompt('Introduce FX2 -> (Valor ya conocido)'));
+    let fx2= (prompt('Introduce FX2 -> (Valor ya conocido)'));
     comprobar(fx2);
     
     let op1 = ((fx1-fx0)/(x1-x0));
@@ -60,19 +61,19 @@ function interCuadratica() {
 
 
 function interLagrangeUNO() {
-    let x = Number(prompt('Introduce X -> (Valor a Calcular)'));
+    let x = (prompt('Introduce X -> (Valor a Calcular)'));
     comprobar(x);
 
-    let x0 = Number(prompt('Introduce X0 -> (Valor ya conocido)'));
+    let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
     comprobar(x0);
 
-    let x1 = Number(prompt('Introduce X1 -> (Valor ya conocido)'));
+    let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
     comprobar(x1);
 
-    let fx0 = Number(prompt('Introduce FX0 -> (Valor ya conocido)'));
+    let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
     comprobar(fx0);
 
-    let fx1= Number(prompt('Introduce FX1 -> (Valor ya conocido)'));
+    let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
     comprobar(fx1);
 
     let resultado = Number((((x-x1)/(x0-x1))*(fx0))+(((x-x0)/(x1-x0))*(fx1)));       
@@ -84,25 +85,25 @@ function interLagrangeUNO() {
 
 
 function interLagrangeDOS() {
-    let x = Number(prompt('Introduce X -> (Valor a Calcular)'));
+    let x = (prompt('Introduce X -> (Valor a Calcular)'));
     comprobar(x);
 
-    let x0 = Number(prompt('Introduce X0 -> (Valor ya conocido)'));
+    let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
     comprobar(x0);
 
-    let x1 = Number(prompt('Introduce X1 -> (Valor ya conocido)'));
+    let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
     comprobar(x1);
 
-    let x2 = Number(prompt('Introduce X2 -> (Valor ya conocido)'));
+    let x2 = (prompt('Introduce X2 -> (Valor ya conocido)'));
     comprobar(x2);
 
-    let fx0 = Number(prompt('Introduce FX0 -> (Valor ya conocido)'));
+    let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
     comprobar(fx0);
 
-    let fx1= Number(prompt('Introduce FX1 -> (Valor ya conocido)'));
+    let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
     comprobar(fx1);
 
-    let fx2= Number(prompt('Introduce FX2 -> (Valor ya conocido)'));
+    let fx2= (prompt('Introduce FX2 -> (Valor ya conocido)'));
     comprobar(fx2);
 
     let op1 = ((((x-x1)/(x0-x1))*((x-x2)/(x0-x2)))*fx0);     
@@ -116,10 +117,10 @@ function interLagrangeDOS() {
 
 function valorRelativo() {
 
-    let valorReal = Number(prompt('Introduce el VALOR REAL'));
+    let valorReal = (prompt('Introduce el VALOR REAL'));
     comprobar(valorReal);
 
-    let valorAprox = Number(prompt('Introduce el VALOR APROXIMADO'));
+    let valorAprox = (prompt('Introduce el VALOR APROXIMADO'));
     comprobar(valorAprox);
 
     let errorVerdadero = valorReal - valorAprox;
@@ -140,51 +141,24 @@ function noDisponible() {
 }
 
 function proximamente() {
-    alert('PRÓXIMAMENTE...')
+    anunciarErrorUI('Proximamente disponible')
 }
 
 function comprobar(value) {
-    if (Number.isNaN(value) === true || value === undefined) {
-        let timerInterval
-        Swal.fire({
-          title: 'VALIDANDO DATOS...',
-          html: 'ESPERE UN MOMENTO',
-          timer: 500,
-          timerProgressBar: true,
-          didOpen: () => {
-            Swal.showLoading()
-            timerInterval = setInterval(() => {
-              const content = Swal.getContent()
-              if (content) {
-                const b = content.querySelector('b')
-                if (b) {
-                  b.textContent = Swal.getTimerLeft()
-                }
-              }
-            }, 100)
-          },
-          willClose: () => {
-            Swal.fire('UPSS!!!!', 'Hay campos vacios o con datos no correctos', 'error');
-            clearInterval(timerInterval)
-          }
-        }).then((result) => {
-          /* Read more about handling dismissals below */
-          if (result.dismiss === Swal.DismissReason.timer) {
-          }
-        })
-        return javascript_abort();
+    if (Number.isNaN(Number(value)) == true || value === undefined || value == '' || value == null) {
+        anunciarErrorUI('Hay campos vacíos o datos no correctos.');
     }
 }
 
 function javascript_abort()
 {
-   throw new Error('ERROR DE DATOS');
+   throw new Error('ERROR DE DATOS.');
 }
 
 function anunciarResultado(value) {
     console.log('Resultado = ' + value);
-    if (Number.isNaN(value) === true) {
-        alert(`VALORES NO VÁLIDOS`);
+    if (Number.isNaN(Number(value)) === true) {
+        anunciarErrorUI('OPERACIÓN O VALORES NO VÁLIDOS.')
     } else {
         alert(`El RESULTADO de F(X) = ${value}`);
     }
@@ -193,8 +167,39 @@ function anunciarResultado(value) {
 function anunciarResultado2(value) {
     console.log('Resultado = ' + value);
     if (Number.isNaN(value) === true) {
-        alert(`VALORES NO VÁLIDOS`);
+        alert(`VALORES NO VÁLIDOS.`);
     } else {
         alert(`El RESULTADO = ${value}`);
     }
+}
+
+function anunciarErrorUI(errorMessage) {
+    let timerInterval
+    Swal.fire({
+      title: 'VALIDANDO DATOS...',
+      html: 'ESPERE UN MOMENTO',
+      timer: 500,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        timerInterval = setInterval(() => {
+          const content = Swal.getContent()
+          if (content) {
+            const b = content.querySelector('b')
+            if (b) {
+              b.textContent = Swal.getTimerLeft()
+            }
+          }
+        }, 100)
+      },
+      willClose: () => {
+        Swal.fire('UPSS!!!', errorMessage, 'error');
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
+    return javascript_abort();
 }
