@@ -145,7 +145,33 @@ function proximamente() {
 
 function comprobar(value) {
     if (Number.isNaN(value) === true || value === undefined) {
-        alert(`DATO NO VÁLIDO = ${value}`)
+        let timerInterval
+        Swal.fire({
+          title: 'VALIDANDO DATOS...',
+          html: 'ESPERE UN MOMENTO',
+          timer: 500,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading()
+            timerInterval = setInterval(() => {
+              const content = Swal.getContent()
+              if (content) {
+                const b = content.querySelector('b')
+                if (b) {
+                  b.textContent = Swal.getTimerLeft()
+                }
+              }
+            }, 100)
+          },
+          willClose: () => {
+            Swal.fire('UPSS!!!!', 'Hay campos vacios o con datos no correctos', 'error');
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+          }
+        })
         return javascript_abort();
     }
 }
