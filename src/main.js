@@ -2,9 +2,9 @@
 // Alumno: Diego Alejandro Gentner Polanco
 // 2do Semestre Grupo "H"
 
-function interLineal() {
-    let x = (prompt('Introduce X -> (Valor a Calcular)'));
-    x = comprobar(x);
+async function interLineal() {
+    let x = (prompt('Introduce X0 -> (Valor ya conocido)'));
+    x =  comprobar(x);
 
     let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
     x0 = comprobar(x0);
@@ -54,6 +54,8 @@ function interCuadratica() {
     let op2 = (((fx2-fx1)/(x2-x1))-((fx1-fx0)/(x1-x0)))/(x2-x0);
     let resultado = ((fx0) + (op1*(x-x0)) + (op2*(x-x0)*(x-x1)));
     
+        console.log(op1);
+        console.log(op2);
         anunciarResultado(resultado);
         return resultado;
 }
@@ -126,10 +128,9 @@ function valorRelativo() {
     let errorVerdadero = valorReal - valorAprox;
     let errorRelativo = (errorVerdadero / valorReal) * 100;
 
-    anunciarResultado2(`
-    Error Verdadero: ${errorVerdadero}
-    Error Relativo: ${errorRelativo.toFixed(5)}%`);
-    return resultado;
+    anunciarResultado(`
+    Error Verdadero: ${errorVerdadero} \n
+    Error Relativo: ${Math.abs(errorRelativo.toFixed(5))}%`);
 
 }
 
@@ -137,16 +138,16 @@ function valorRelativo() {
 // Funciones Reutilizables
 
 function noDisponible() {
-    alert('Operación NO Disponible')
+    anunciarPopUp('NO DISPONIBLE', '', 'error');
 }
 
 function proximamente() {
-    anunciarErrorUI('Proximamente disponible')
+    anunciarPopUp('Proximamente disponible' ,'', 'info')
 }
 
 function comprobar(value) {
     if (Number.isNaN(Number(value)) == true || value === undefined || value == '' || value == null) {
-        anunciarErrorUI('Hay campos vacíos o datos no correctos.');
+        anunciarPopUp(anunciarPopUp('UPPS!!!', 'Por favor revisa tus datos.', 'warning'));
     } else {
         let val = Number(value);
         console.log(val);
@@ -156,24 +157,19 @@ function comprobar(value) {
 
 function javascript_abort()
 {
-   throw new Error('ERROR DE DATOS.');
+   throw new Error('THIS IS NOT AN ERROR - JAVASCRIPT ABORT');
 }
 
 function anunciarResultado(value) {
     console.log('Resultado = ' + value);
-    alert(`El RESULTADO de F(X) = ${value}`);
-}
-
-function anunciarResultado2(value) {
-    console.log('Resultado = ' + value);
-    if (Number.isNaN(value) === true) {
-        alert(`VALORES NO VÁLIDOS.`);
+    if (Number.isNaN(value) == true) {
+        anunciarPopUp('OH...', 'El Resultado es indefinido', 'warning');
     } else {
-        alert(`El RESULTADO = ${value}`);
+        anunciarPopUp('El resultado es:', '' + value, 'success');
     }
 }
 
-function anunciarErrorUI(errorMessage) {
+function anunciarPopUp(messageAlert ,errorMessage, typeMessage) {
     let timerInterval
     Swal.fire({
       title: 'VALIDANDO DATOS...',
@@ -193,7 +189,7 @@ function anunciarErrorUI(errorMessage) {
         }, 100)
       },
       willClose: () => {
-        Swal.fire('UPSS!!!', errorMessage, 'error');
+        Swal.fire(messageAlert, errorMessage, typeMessage);
         clearInterval(timerInterval)
       }
     }).then((result) => {
@@ -208,3 +204,32 @@ function anunciarErrorUI(errorMessage) {
 function convertToNumber(value) {
     return Number(value);
 }
+
+
+
+
+async function inputNumber(desc) {
+
+const { value: resul } = await Swal.fire({
+  title: desc,
+  input: 'number',
+  inputLabel: '',
+  inputValue: '',
+  showCancelButton: true,
+  inputValidator: (value) => {
+    if (!value) {
+      return 'You need to write something!'
+    }
+  }
+})
+
+}
+
+
+// SwwetAlert2 ALERTS
+
+//  - success
+//  - error
+//  - warning
+//  - info
+//  - question
