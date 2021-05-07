@@ -4,23 +4,22 @@
 
 function interLineal() {
     let x = (prompt('Introduce X -> (Valor a Calcular)'));
-    comprobar(x);
-    console.log(x);
+    x = comprobar(x);
 
     let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
-    comprobar(x0);
+    x0 = comprobar(x0);
 
     let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
-    comprobar(x1);
+    x1 = comprobar(x1);
 
     let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
-    comprobar(fx0);
+    fx0 = comprobar(fx0);
 
     let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
-    comprobar(fx1);
+    fx1 = comprobar(fx1);
 
     
-    let resultado = Number(((fx0)+(((fx1)-(fx0))/((x1)-(x0)))*((x)-(x0))));
+    let resultado = (((fx0)+(((fx1)-(fx0))/((x1)-(x0)))*((x)-(x0))));
     
         anunciarResultado(resultado);
         return resultado;
@@ -30,29 +29,30 @@ function interLineal() {
 
 function interCuadratica() {
     let x = (prompt('Introduce X -> (Valor a Calcular)'));
-    comprobar(x);
+    x = comprobar(x);
 
     let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
-    comprobar(x0);
+    x0 = comprobar(x0);
 
     let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
-    comprobar(x1);
+    x1 = comprobar(x1);
 
     let x2 = (prompt('Introduce X2 -> (Valor ya conocido)'));
-    comprobar(x2);
+    x2 = comprobar(x2);
 
     let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
-    comprobar(fx0);
+    fx0 = comprobar(fx0);
 
     let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
-    comprobar(fx1);
+    fx1 = comprobar(fx1);
 
     let fx2= (prompt('Introduce FX2 -> (Valor ya conocido)'));
-    comprobar(fx2);
+    fx2 = comprobar(fx2);
+
     
     let op1 = ((fx1-fx0)/(x1-x0));
     let op2 = (((fx2-fx1)/(x2-x1))-((fx1-fx0)/(x1-x0)))/(x2-x0);
-    let resultado = Number((fx0) + (op1*(x-x0)) + (op2*(x-x0)*(x-x1)));
+    let resultado = ((fx0) + (op1*(x-x0)) + (op2*(x-x0)*(x-x1)));
     
         anunciarResultado(resultado);
         return resultado;
@@ -62,21 +62,21 @@ function interCuadratica() {
 
 function interLagrangeUNO() {
     let x = (prompt('Introduce X -> (Valor a Calcular)'));
-    comprobar(x);
+    x = comprobar(x);
 
     let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
-    comprobar(x0);
+    x0 = comprobar(x0);
 
     let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
-    comprobar(x1);
+    x1 = comprobar(x1);
 
     let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
-    comprobar(fx0);
+    x1 = comprobar(x1);
 
     let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
-    comprobar(fx1);
+    fx1 = comprobar(fx1);
 
-    let resultado = Number((((x-x1)/(x0-x1))*(fx0))+(((x-x0)/(x1-x0))*(fx1)));       
+    let resultado = ((((x-x1)/(x0-x1))*(fx0))+(((x-x0)/(x1-x0))*(fx1)));       
     
         anunciarResultado(resultado);
         return resultado;    
@@ -86,30 +86,30 @@ function interLagrangeUNO() {
 
 function interLagrangeDOS() {
     let x = (prompt('Introduce X -> (Valor a Calcular)'));
-    comprobar(x);
+    x = comprobar(x);
 
     let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
-    comprobar(x0);
+    x0 = comprobar(x0);
 
     let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
-    comprobar(x1);
+    x1 = comprobar(x1);
 
     let x2 = (prompt('Introduce X2 -> (Valor ya conocido)'));
-    comprobar(x2);
+    x2 = comprobar(x2);
 
     let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
-    comprobar(fx0);
+    fx0 = comprobar(fx0);
 
     let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
-    comprobar(fx1);
+    fx1 = comprobar(fx1);
 
     let fx2= (prompt('Introduce FX2 -> (Valor ya conocido)'));
-    comprobar(fx2);
+    fx2 = comprobar(fx2);
 
     let op1 = ((((x-x1)/(x0-x1))*((x-x2)/(x0-x2)))*fx0);     
     let op2 = ((((x-x0)/(x1-x0))*((x-x2)/(x1-x2)))*fx1);
     let op3 = ((((x-x0)/(x2-x0))*((x-x1)/(x2-x1)))*fx2);
-    let resultado = Number(op1 + op2 + op3);
+    let resultado = (op1 + op2 + op3);
     
         anunciarResultado(resultado);
         return resultado;
@@ -128,7 +128,7 @@ function valorRelativo() {
 
     anunciarResultado2(`
     Error Verdadero: ${errorVerdadero}
-    Error Relativo: ${errorRelativo.toFixed(3)}%`);
+    Error Relativo: ${errorRelativo.toFixed(5)}%`);
     return resultado;
 
 }
@@ -147,6 +147,10 @@ function proximamente() {
 function comprobar(value) {
     if (Number.isNaN(Number(value)) == true || value === undefined || value == '' || value == null) {
         anunciarErrorUI('Hay campos vacíos o datos no correctos.');
+    } else {
+        let val = Number(value);
+        console.log(val);
+        return val;
     }
 }
 
@@ -157,11 +161,7 @@ function javascript_abort()
 
 function anunciarResultado(value) {
     console.log('Resultado = ' + value);
-    if (Number.isNaN(Number(value)) === true) {
-        anunciarErrorUI('OPERACIÓN O VALORES NO VÁLIDOS.')
-    } else {
-        alert(`El RESULTADO de F(X) = ${value}`);
-    }
+    alert(`El RESULTADO de F(X) = ${value}`);
 }
 
 function anunciarResultado2(value) {
@@ -202,4 +202,9 @@ function anunciarErrorUI(errorMessage) {
       }
     })
     return javascript_abort();
+}
+
+
+function convertToNumber(value) {
+    return Number(value);
 }
