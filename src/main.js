@@ -120,17 +120,20 @@ function interLagrangeDOS() {
 function valorRelativo() {
 
     let valorReal = (prompt('Introduce el VALOR REAL'));
-    comprobar(valorReal);
+    valorReal = comprobar(valorReal);
 
     let valorAprox = (prompt('Introduce el VALOR APROXIMADO'));
-    comprobar(valorAprox);
+    valorAprox = comprobar(valorAprox);
 
     let errorVerdadero = valorReal - valorAprox;
     let errorRelativo = (errorVerdadero / valorReal) * 100;
 
+    if ((Number.isNaN(errorRelativo)) === true) {
+        errorRelativo = 0;
+    }
+
     anunciarResultado(`
-    Error Verdadero: ${errorVerdadero} \n
-    Error Relativo: ${Math.abs(errorRelativo.toFixed(5))}%`);
+    Error Verdadero: ${errorVerdadero} \t\n Error Relativo: ${Math.abs(errorRelativo.toFixed(5))}%`);
 
 }
 
@@ -147,7 +150,7 @@ function proximamente() {
 
 function comprobar(value) {
     if (Number.isNaN(Number(value)) == true || value === undefined || value == '' || value == null) {
-        anunciarPopUp(anunciarPopUp('UPPS!!!', 'Por favor revisa tus datos.', 'warning'));
+        anunciarPopUp(anunciarPopUp('UPPS!!!', 'Datos no válidos o incorrectos.', 'warning'));
     } else {
         let val = Number(value);
         console.log(val);
@@ -163,18 +166,18 @@ function javascript_abort()
 function anunciarResultado(value) {
     console.log('Resultado = ' + value);
     if (Number.isNaN(value) == true) {
-        anunciarPopUp('OH...', 'El Resultado es indefinido', 'warning');
+        anunciarPopUp('El resultado es indefinido.', '', 'info');
     } else {
         anunciarPopUp('El resultado es:', '' + value, 'success');
     }
 }
 
-function anunciarPopUp(messageAlert ,errorMessage, typeMessage) {
+function anunciarPopUp(messageAlert ,errorMessage, typeMessage, tiempo, otro) {
     let timerInterval
     Swal.fire({
-      title: 'VALIDANDO DATOS...',
+      title: 'VALIDANDO...',
       html: 'ESPERE UN MOMENTO',
-      timer: 500,
+      timer: tiempo = 500,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading()
@@ -195,6 +198,7 @@ function anunciarPopUp(messageAlert ,errorMessage, typeMessage) {
     }).then((result) => {
       /* Read more about handling dismissals below */
       if (result.dismiss === Swal.DismissReason.timer) {
+        otro;
       }
     })
     return javascript_abort();
@@ -208,22 +212,22 @@ function convertToNumber(value) {
 
 
 
-async function inputNumber(desc) {
+// async function inputNumber(desc) {
 
-const { value: resul } = await Swal.fire({
-  title: desc,
-  input: 'number',
-  inputLabel: '',
-  inputValue: '',
-  showCancelButton: true,
-  inputValidator: (value) => {
-    if (!value) {
-      return 'You need to write something!'
-    }
-  }
-})
+// const { value: resul } = await Swal.fire({
+//   title: desc,
+//   input: 'number',
+//   inputLabel: '',
+//   inputValue: '',
+//   showCancelButton: true,
+//   inputValidator: (value) => {
+//     if (!value) {
+//       return 'You need to write something!'
+//     }
+//   }
+// })
 
-}
+// }
 
 
 // SwwetAlert2 ALERTS

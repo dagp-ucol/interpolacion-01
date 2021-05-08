@@ -15,9 +15,11 @@
 
 <body>
   <br>
-  <center><img src="img/title.jpg" alt="Logo" width="325" class="img-border"></center>
+  <center><img src="img/title.jpg" alt="Logo" width="325" class="logo-border"></center>
   <br>
-    <center><table border="5px">
+
+  <div class="div-border">
+    <table border="5px">
       <h1>⬇  Menú  ⬇</h1><br>
         <tr>
           <td><button onclick="interLineal()"><p>Interpolación Lineal</p></button></td>
@@ -38,7 +40,7 @@
           <td><button onclick="valorRelativo()"><p class="hello2">Error Verdadero y Relativo</p></button></td>
         </tr>
         <tr>
-          <td><button onclick="window.location.href='src/formulas.html'"><p class="formulas">Formulas</p></button></td>
+          <td><button onclick="anunciarPopUp('Redirigiendo...', 'Pulsa OK', 'info', 3000, window.location.href='src/formulas.html');"><p class="formulas">Formulas</p></button></td>
         </tr>
         <tr>
           <td></td>
@@ -47,7 +49,10 @@
           <td><button button onclick="anunciarPopUp('Microsoft Azure', 'https://azure.microsoft.com/', 'info');"><p class="hello">Hosted in Azure Servers</p></button></td>
         </tr>
 
-      </table></center>
-</body>
+      </table>
+      
+    </div>
+    
+    </body>
 
 </html>

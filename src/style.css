@@ -65,6 +65,16 @@ button {
 }
 
 .img-border {
-    border: transparent 10px solid;
-    image-rendering: crisp-edges;
+    width: 90%;
+    max-width: 825px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.logo-border {
+    margin-top: 1%;
+    width: 90%;
+    max-width: 525px;
+    margin-left: 5%;
+    margin-right: 5%;
 }
