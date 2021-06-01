@@ -150,7 +150,14 @@ function proximamente() {
 
 function comprobar(value) {
     if (Number.isNaN(Number(value)) == true || value === undefined || value == '' || value == null) {
-        anunciarPopUp(anunciarPopUp('UPPS!!!', 'Datos no válidos o incorrectos.', 'warning'));
+        if (value == null) {
+          Toast.fire({
+            icon: 'warning',
+            title: 'CANCELADO'
+          }).then(javascript_abort());
+        } else {
+          anunciarPopUp(anunciarPopUp('UPPS!!!', 'Datos no válidos o incorrectos.', 'warning'));
+        }
     } else {
         let val = Number(value);
         console.log(val);
@@ -210,6 +217,19 @@ function convertToNumber(value) {
 }
 
 
+
+// Sweet Alert
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 1200,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 
 
 // async function inputNumber(desc) {
