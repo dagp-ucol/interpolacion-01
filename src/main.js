@@ -2,7 +2,7 @@
 // Alumno: Diego Alejandro Gentner Polanco
 // 2do Semestre Grupo "H"
 
-async function interLineal() {
+function interLineal() {
     let x = (prompt('Introduce X0 -> (Valor ya conocido)'));
     x =  comprobar(x);
 
@@ -137,6 +137,30 @@ function valorRelativo() {
 
 }
 
+function newton() {
+
+  let x0 = (prompt('Introduce X0 -> (Valor Conocido)'));
+  x0 = comprobar(x0);
+
+  let iteraciones = Math.abs((prompt('¿Cuántas Iteraciones?')));
+  iteraciones = comprobar(iteraciones);
+  
+
+  for (let i = 0; i < iteraciones; i++) {
+    
+    let fx = (2*Math.cos(x0)-Math.exp(x0)).toFixed(5);
+    let dfx = (-2*Math.sin(x0)-Math.exp(x0)).toFixed(5);
+    x0 = x0 - ((fx/dfx)).toFixed(5);
+
+  }
+
+  
+  anunciarResultado(`El resultado es:${x0} con ${valorRelativoReutilizable(0.53978, x0)}`)
+  return x0
+}
+
+
+
 
 // Funciones Reutilizables
 
@@ -171,12 +195,12 @@ function javascript_abort()
 }
 
 function anunciarResultado(value) {
-    console.log('Resultado = ' + value);
-    if (Number.isNaN(value) == true) {
-        anunciarPopUp('El resultado es indefinido.', '', 'info');
-    } else {
-        anunciarPopUp('El resultado es:', '' + value, 'success');
-    }
+  console.log('Resultado = ' + value);
+  if (Number.isNaN(value) == true) {
+      anunciarPopUp('El resultado es indefinido.', '', 'info');
+  } else {
+      anunciarPopUp('El resultado es:', '' + value, 'success');
+  }
 }
 
 function anunciarPopUp(messageAlert ,errorMessage, typeMessage, tiempo, otro) {
@@ -231,6 +255,18 @@ const Toast = Swal.mixin({
   }
 })
 
+function valorRelativoReutilizable(valorReal, valorAprox) {
+
+  let errorVerdadero = valorReal - valorAprox;
+  let errorRelativo = (errorVerdadero / valorReal) * 100;
+
+  if ((Number.isNaN(errorRelativo)) === true) {
+      errorRelativo = 0;
+  }
+
+  return (`Error Verdadero: ${errorVerdadero} \t\n Error Relativo: ${Math.abs(errorRelativo.toFixed(5))}%`);
+
+}
 
 // async function inputNumber(desc) {
 
