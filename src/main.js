@@ -137,8 +137,9 @@ function valorRelativo() {
 
 }
 
-function newton() {
+async function newton() {
 
+  await Swal.fire('', 'Esta función utiliza la ecuación: 2cos(x)-e^x y usa solo 5 decimales!')
   let x0 = (prompt('Introduce X0 -> (Valor Conocido)'));
   x0 = comprobar(x0);
 
@@ -154,7 +155,7 @@ function newton() {
 
   }
 
-  
+
   anunciarResultado(`El resultado es:${x0} con ${valorRelativoReutilizable(0.53978, x0)}`)
   return x0
 }
