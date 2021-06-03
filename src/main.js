@@ -139,12 +139,17 @@ function valorRelativo() {
 
 async function newton() {
 
-  await Swal.fire('', 'Esta función utiliza la ecuación: 2cos(x)-e^x y usa solo 5 decimales!')
+  await Swal.fire('', 'Solo puedes usar un maximo de 100 iteraciones');
+  await Swal.fire('', 'Esta función utiliza la ecuación: 2cos(x)-e^x y usa solo 5 decimales!');
+    
   let x0 = (prompt('Introduce X0 -> (Valor Conocido)'));
   x0 = comprobar(x0);
 
   let iteraciones = Math.abs((prompt('¿Cuántas Iteraciones?')));
   iteraciones = comprobar(iteraciones);
+  if (iteraciones > 100) {
+    noDisponible('Demasiadas Iteraciones - MAX 100')
+  } 
   
 
   for (let i = 0; i < iteraciones; i++) {
@@ -165,8 +170,8 @@ async function newton() {
 
 // Funciones Reutilizables
 
-function noDisponible() {
-    anunciarPopUp('NO DISPONIBLE', '', 'error');
+function noDisponible(value) {
+    anunciarPopUp('NO DISPONIBLE', value, 'error');
 }
 
 function proximamente() {
