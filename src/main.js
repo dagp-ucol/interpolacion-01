@@ -19,7 +19,7 @@ class App {
   }
 
   _interLineal = () => {
-
+    
     let x = getUserDataAndComprobar('x', true)
     let x0 = getUserDataAndComprobar('x0', true)
     let x1 = getUserDataAndComprobar('x1', true)
@@ -28,6 +28,7 @@ class App {
     
     let resultado = new InterLineal(x,x0,x1,fx0,fx1);
     
+        console.log(`Valores Interlineales: ${resultado.getValues()}`)
         anunciarResultado(resultado.getAnswer());
         return resultado.getAnswer();
 }
@@ -39,6 +40,13 @@ class App {
 new App()
 
 
+
+
+
+
+
+// Reutilizable 2.0
+
 const getUserDataAndComprobar = (data, know) => {
   
   let readData;
@@ -48,8 +56,7 @@ const getUserDataAndComprobar = (data, know) => {
   } else {
     readData = (prompt(`Introduce ${data} -> (Valor a Calcular)`));
   }
-  comprobar(readData);
-  return readData;
+  return comprobar(readData);;
 
 } // Get User Dara Finale
 
