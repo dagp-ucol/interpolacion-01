@@ -2,6 +2,8 @@
 // Alumno: Diego Alejandro Gentner Polanco
 // 2do Semestre Grupo "H"
 
+// Hola
+
 function interLineal() {
     let x = (prompt('Introduce X0 -> (Valor ya conocido)'));
     x =  comprobar(x);
