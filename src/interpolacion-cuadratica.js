@@ -1,6 +1,8 @@
 export default class InterCuadratica {
 
-    
+    constructor() {
+
+    }
 
 
 

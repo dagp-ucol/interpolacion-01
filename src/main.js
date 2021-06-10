@@ -2,9 +2,65 @@
 // Alumno: Diego Alejandro Gentner Polanco
 // 2do Semestre Grupo "H"
 
-// Hola
+import InterLineal from './interpolacion-lineal.js'
 
-function interLineal() {
+
+class App {
+
+
+
+
+
+} // App Class Finale
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const interLineal = () => {
     let x = (prompt('Introduce X0 -> (Valor ya conocido)'));
     x =  comprobar(x);
 
