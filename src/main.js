@@ -7,17 +7,51 @@ import InterLineal from './interpolacion-lineal.js'
 
 class App {
 
+  constructor() {
+        
+    let btnRegLineal = document.querySelector('#btnLineal');
+    let btnRegCuadratica = document.querySelector('#btnCuadratica');
+    let btnRegLagUno = document.querySelector('#btnLagUno');
+    let btnRegLagDos = document.querySelector('#btnLagDos');
 
+    btnRegLineal.addEventListener('click', this._interLineal);
 
+  }
+
+  _interLineal = () => {
+
+    let x = getUserDataAndComprobar('x', true)
+    let x0 = getUserDataAndComprobar('x0', true)
+    let x1 = getUserDataAndComprobar('x1', true)
+    let fx0 = getUserDataAndComprobar('fx0', true)
+    let fx1 = getUserDataAndComprobar('fx1', true)
+    
+    let resultado = new InterLineal(x,x0,x1,fx0,fx1);
+    
+        anunciarResultado(resultado.getAnswer());
+        return resultado.getAnswer();
+}
 
 
 } // App Class Finale
 
 
+new App()
 
 
+const getUserDataAndComprobar = (data, know) => {
+  
+  let readData;
 
+  if (know) {
+    readData = (prompt(`Introduce ${data} -> (Valor ya conocido)`));
+  } else {
+    readData = (prompt(`Introduce ${data} -> (Valor a Calcular)`));
+  }
+  comprobar(readData);
+  return readData;
 
+} // Get User Dara Finale
 
 
 
