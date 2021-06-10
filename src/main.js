@@ -3,6 +3,7 @@
 // 2do Semestre Grupo "H"
 
 import InterLineal from './interpolacion-lineal.js'
+import InterCuadratica from './interpolacion-cuadratica.js'
 
 
 class App {
@@ -13,8 +14,17 @@ class App {
     let btnRegCuadratica = document.querySelector('#btnCuadratica');
     let btnRegLagUno = document.querySelector('#btnLagUno');
     let btnRegLagDos = document.querySelector('#btnLagDos');
+    let btnRegNewton = document.querySelector('#btnNewton');
+    let btnRegErrorVR = document.querySelector('#btnErrorVR');
+    let btnRegFormulas = document.querySelector('#btnFormulas');
 
     btnRegLineal.addEventListener('click', this._interLineal);
+    btnRegCuadratica.addEventListener('click', this._interCuadratica);
+    btnRegLagUno.addEventListener('click', noDisponible);
+    btnRegLagDos.addEventListener('click', noDisponible);
+    btnRegNewton.addEventListener('click', noDisponible);
+    btnRegErrorVR.addEventListener('click', noDisponible);
+    btnRegFormulas.addEventListener('click', noDisponible);
 
   }
 
@@ -33,11 +43,27 @@ class App {
         return resultado.getAnswer();
 }
 
+  _interCuadratica() {
+    let x = getUserDataAndComprobar('x', false)
+    let x0 = getUserDataAndComprobar('x0', true)
+    let x1 = getUserDataAndComprobar('x1', true)
+    let x2 = getUserDataAndComprobar('x2', true)
+    let fx0 = getUserDataAndComprobar('fx0', true)
+    let fx1 = getUserDataAndComprobar('fx1', true)
+    let fx2 = getUserDataAndComprobar('fx2', true)
+    
+    let resultado = new InterCuadratica(x,x0,x1,x2,fx0,fx1,fx2);
+    
+        console.log(`Valores Interlineales Cuadraticos: ${resultado.getValues()}`)
+        anunciarResultado(resultado.getAnswer());
+        return resultado.getAnswer();
+  }
+
 
 } // App Class Finale
 
 
-new App()
+new App() // App Execution
 
 
 
@@ -58,71 +84,50 @@ const getUserDataAndComprobar = (data, know) => {
   }
   return comprobar(readData);;
 
-} // Get User Dara Finale
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const interLineal = () => {
-    let x = (prompt('Introduce X0 -> (Valor ya conocido)'));
-    x =  comprobar(x);
-
-    let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
-    x0 = comprobar(x0);
-
-    let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
-    x1 = comprobar(x1);
-
-    let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
-    fx0 = comprobar(fx0);
-
-    let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
-    fx1 = comprobar(fx1);
-
-    
-    let resultado = (((fx0)+(((fx1)-(fx0))/((x1)-(x0)))*((x)-(x0))));
-    
-        anunciarResultado(resultado);
-        return resultado;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -270,7 +275,7 @@ async function newton() {
 // Funciones Reutilizables
 
 function noDisponible(value) {
-    anunciarPopUp('NO DISPONIBLE', value, 'error');
+    anunciarPopUp('NO DISPONIBLE', value = 'BETA ERROR', 'error');
 }
 
 function proximamente() {
