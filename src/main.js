@@ -4,6 +4,8 @@
 
 import InterLineal from './interpolacion-lineal.js'
 import InterCuadratica from './interpolacion-cuadratica.js'
+import InterLagrange from './interpolacion-lagrange.js'
+import
 
 
 class App {
@@ -20,17 +22,18 @@ class App {
 
     btnRegLineal.addEventListener('click', this._interLineal);
     btnRegCuadratica.addEventListener('click', this._interCuadratica);
-    btnRegLagUno.addEventListener('click', noDisponible);
-    btnRegLagDos.addEventListener('click', noDisponible);
-    btnRegNewton.addEventListener('click', noDisponible);
-    btnRegErrorVR.addEventListener('click', noDisponible);
+    btnRegLagUno.addEventListener('click', this._interLangUno);
+    btnRegLagDos.addEventListener('click', this._interLangDos);
+    btnRegNewton.addEventListener('click', newton);
+    btnRegErrorVR.addEventListener('click', this.valorRelativo);
     btnRegFormulas.addEventListener('click', noDisponible);
 
   }
 
-  _interLineal = () => {
+
+  async _interLineal() {
     
-    let x = getUserDataAndComprobar('x', true)
+    let x = getUserDataAndComprobar('x', false)
     let x0 = getUserDataAndComprobar('x0', true)
     let x1 = getUserDataAndComprobar('x1', true)
     let fx0 = getUserDataAndComprobar('fx0', true)
@@ -41,9 +44,10 @@ class App {
         console.log(`Valores Interlineales: ${resultado.getValues()}`)
         anunciarResultado(resultado.getAnswer());
         return resultado.getAnswer();
-}
+  }
 
-  _interCuadratica() {
+
+  async _interCuadratica() {
     let x = getUserDataAndComprobar('x', false)
     let x0 = getUserDataAndComprobar('x0', true)
     let x1 = getUserDataAndComprobar('x1', true)
@@ -54,174 +58,46 @@ class App {
     
     let resultado = new InterCuadratica(x,x0,x1,x2,fx0,fx1,fx2);
     
-        console.log(`Valores Interlineales Cuadraticos: ${resultado.getValues()}`)
+        console.log(`Valores Interpolacion Cuadraticos: ${resultado.getValues()}`)
         anunciarResultado(resultado.getAnswer());
         return resultado.getAnswer();
   }
 
 
-} // App Class Finale
-
-
-new App() // App Execution
-
-
-
-
-
-
-
-// Reutilizable 2.0
-
-const getUserDataAndComprobar = (data, know) => {
-  
-  let readData;
-
-  if (know) {
-    readData = (prompt(`Introduce ${data} -> (Valor ya conocido)`));
-  } else {
-    readData = (prompt(`Introduce ${data} -> (Valor a Calcular)`));
+  async _interLangUno() {
+    
+    let x = getUserDataAndComprobar('x', false)
+    let x0 = getUserDataAndComprobar('x0', true)
+    let x1 = getUserDataAndComprobar('x1', true)
+    let fx0 = getUserDataAndComprobar('fx0', true)
+    let fx1 = getUserDataAndComprobar('fx1', true)
+    
+    let resultado = new InterLagrange(x,x0,x1,fx0,fx1);
+    
+        console.log(`Valores Interpolacion Lang1G: ${resultado.getValues()}`)
+        anunciarResultado(resultado.getAnswerUno());
+        return resultado.getAnswerUno();
   }
-  return comprobar(readData);;
-
-}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function interCuadratica() {
-    let x = (prompt('Introduce X -> (Valor a Calcular)'));
-    x = comprobar(x);
-
-    let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
-    x0 = comprobar(x0);
-
-    let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
-    x1 = comprobar(x1);
-
-    let x2 = (prompt('Introduce X2 -> (Valor ya conocido)'));
-    x2 = comprobar(x2);
-
-    let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
-    fx0 = comprobar(fx0);
-
-    let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
-    fx1 = comprobar(fx1);
-
-    let fx2= (prompt('Introduce FX2 -> (Valor ya conocido)'));
-    fx2 = comprobar(fx2);
-
+  async _interLangDos() {
+    let x = getUserDataAndComprobar('x', false)
+    let x0 = getUserDataAndComprobar('x0', true)
+    let x1 = getUserDataAndComprobar('x1', true)
+    let x2 = getUserDataAndComprobar('x2', true)
+    let fx0 = getUserDataAndComprobar('fx0', true)
+    let fx1 = getUserDataAndComprobar('fx1', true)
+    let fx2 = getUserDataAndComprobar('fx2', true)
     
-    let op1 = ((fx1-fx0)/(x1-x0));
-    let op2 = (((fx2-fx1)/(x2-x1))-((fx1-fx0)/(x1-x0)))/(x2-x0);
-    let resultado = ((fx0) + (op1*(x-x0)) + (op2*(x-x0)*(x-x1)));
+    let resultado = new InterLagrange(x,x0,x1,fx0,fx1,x2,fx2);
     
-        console.log(op1);
-        console.log(op2);
-        anunciarResultado(resultado);
-        return resultado;
-}
+        console.log(`Valores Interpolacion Lang2G: ${resultado.getValues()}`)
+        anunciarResultado(resultado.getAnswerDos());
+        return resultado.getAnswerDos();
+  }
 
 
-
-function interLagrangeUNO() {
-    let x = (prompt('Introduce X -> (Valor a Calcular)'));
-    x = comprobar(x);
-
-    let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
-    x0 = comprobar(x0);
-
-    let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
-    x1 = comprobar(x1);
-
-    let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
-    x1 = comprobar(x1);
-
-    let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
-    fx1 = comprobar(fx1);
-
-    let resultado = ((((x-x1)/(x0-x1))*(fx0))+(((x-x0)/(x1-x0))*(fx1)));       
-    
-        anunciarResultado(resultado);
-        return resultado;    
-}
-
-
-
-function interLagrangeDOS() {
-    let x = (prompt('Introduce X -> (Valor a Calcular)'));
-    x = comprobar(x);
-
-    let x0 = (prompt('Introduce X0 -> (Valor ya conocido)'));
-    x0 = comprobar(x0);
-
-    let x1 = (prompt('Introduce X1 -> (Valor ya conocido)'));
-    x1 = comprobar(x1);
-
-    let x2 = (prompt('Introduce X2 -> (Valor ya conocido)'));
-    x2 = comprobar(x2);
-
-    let fx0 = (prompt('Introduce FX0 -> (Valor ya conocido)'));
-    fx0 = comprobar(fx0);
-
-    let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
-    fx1 = comprobar(fx1);
-
-    let fx2= (prompt('Introduce FX2 -> (Valor ya conocido)'));
-    fx2 = comprobar(fx2);
-
-    let op1 = ((((x-x1)/(x0-x1))*((x-x2)/(x0-x2)))*fx0);     
-    let op2 = ((((x-x0)/(x1-x0))*((x-x2)/(x1-x2)))*fx1);
-    let op3 = ((((x-x0)/(x2-x0))*((x-x1)/(x2-x1)))*fx2);
-    let resultado = (op1 + op2 + op3);
-    
-        anunciarResultado(resultado);
-        return resultado;
-}
-
-function valorRelativo() {
+  async valorRelativo() {
 
     let valorReal = (prompt('Introduce el VALOR REAL'));
     valorReal = comprobar(valorReal);
@@ -237,17 +113,148 @@ function valorRelativo() {
     }
 
     anunciarResultado(`
-    Error Verdadero: ${errorVerdadero} \t\n Error Relativo: ${Math.abs(errorRelativo.toFixed(5))}%`);
+    Error Verdadero: ${errorVerdadero} \t\n 
+    Error Relativo: ${Math.abs(errorRelativo.toFixed(5))}%`);
+
+  }
+
+
+
+
+
+
+
+
+
+
+} // App Class Finale
+
+
+new App() // App Execution
+
+
+
+/* Reutilizables 2.0 - - - - - -
+
+    getUserDataAndComprobar = 
+      ##################################### ##################################### #############
+      #   Funcion que analiza los datos para posteriormente regresar los valores comporbados  #
+      #   La funcion comprueba que sean numeros                                               #
+      #   La funcion comprueba que los campos no estan vacios                                 #
+      #   La funcion comprueba si se cancelo la operacion cuando se regresa un null           #
+      ##################################### ##################################### ############# */
+
+const getUserDataAndComprobar = (data, know) => {
+  
+  let readData;
+
+  if (know) {
+    readData = (prompt(`Introduce ${data} -> (Valor ya conocido)`));
+  } else {
+    readData = (prompt(`Introduce ${data} -> (Valor a Calcular)`));
+  }
+  return comprobar(readData);;
 
 }
+
+const comprobar = (value) => {
+  if (Number.isNaN(Number(value)) == true || value === undefined || value == '' || value == null) {
+      if (value == null) {
+        Toast.fire({
+          icon: 'warning',
+          title: 'CANCELADO'
+        }).then(javascript_abort());
+      } else {
+        anunciarPopUp('UPPS!!!', 'Datos no válidos o incorrectos.', 'warning');
+      }
+  } else {
+      let val = Number(value);
+      console.log(val);
+      return val;
+  }
+}
+
+async function getData2() {
+
+  return await Swal.fire({
+    title: 'Input email address',
+    input: 'text',
+    inputLabel: 'Your email address',
+    inputPlaceholder: 'Enter your email address'
+  })
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 async function newton() {
 
   await Swal.fire('', 'Solo puedes usar un maximo de 100 iteraciones');
   await Swal.fire('', 'Esta función utiliza la ecuación: 2cos(x)-e^x y usa solo 5 decimales!');
     
-  let x0 = (prompt('Introduce X0 -> (Valor Conocido)'));
-  x0 = comprobar(x0);
+  let x0 = getUserDataAndComprobar('x0', true)
 
   let iteraciones = Math.abs((prompt('¿Cuántas Iteraciones?')));
   iteraciones = comprobar(iteraciones);
@@ -255,15 +262,6 @@ async function newton() {
     noDisponible('Demasiadas Iteraciones - MAX 100')
   } 
   
-
-  for (let i = 0; i < iteraciones; i++) {
-    
-    let fx = (2*Math.cos(x0)-Math.exp(x0)).toFixed(5);
-    let dfx = (-2*Math.sin(x0)-Math.exp(x0)).toFixed(5);
-    x0 = x0 - ((fx/dfx)).toFixed(5);
-
-  }
-
 
   anunciarResultado(`El resultado es:${x0} con ${valorRelativoReutilizable(0.53978, x0)}`)
   return x0
@@ -282,22 +280,7 @@ function proximamente() {
     anunciarPopUp('Proximamente disponible' ,'', 'info')
 }
 
-function comprobar(value) {
-    if (Number.isNaN(Number(value)) == true || value === undefined || value == '' || value == null) {
-        if (value == null) {
-          Toast.fire({
-            icon: 'warning',
-            title: 'CANCELADO'
-          }).then(javascript_abort());
-        } else {
-          anunciarPopUp(anunciarPopUp('UPPS!!!', 'Datos no válidos o incorrectos.', 'warning'));
-        }
-    } else {
-        let val = Number(value);
-        console.log(val);
-        return val;
-    }
-}
+
 
 function javascript_abort()
 {
