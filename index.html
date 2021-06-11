@@ -1,15 +1,17 @@
+<!-- // Métodos Numéricos
+// Alumnos: Diego Gentner Polanco & Brandon Tapia
+// 2do Semestre Grupo "H" -->
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,200&display=swap" rel="stylesheet">
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Métodos Numéricos</title>
   <link rel="stylesheet" href="src/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap" rel="stylesheet"> 
-  <script src="src/main.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="./img/matematicas.png">
 </head>
 
@@ -21,45 +23,39 @@
     <table>
       <center><img src="img/menu.jpg" alt="Logo2" class="logo-border2"></center>
         <tr>
-          <td><button onclick="interLineal()"><p>Interpolación Lineal</p></button></td>
+          <td><button id="btnLineal"><p>Interpolación Lineal</p></button></td>
         </tr>
 
         <tr>
-          <td><button onclick="interCuadratica()"><p>Interpolación Cuadrática</p></button></td>
+          <td><button id="btnCuadratica"><p>Interpolación Cuadrática</p></button></td>
         </tr>
 
         <tr>
-          <td><button onclick="interLagrangeUNO()"><p>Interpolación Lagrange 1G</p></button></td>
+          <td><button id="btnLagUno"><p>Interpolación Lagrange 1G</p></button></td>
         </tr>
 
         <tr>
-          <td><button onclick="interLagrangeDOS()"><p>Interpolación Lagrange 2G</p></button></td>
-        </tr>
-
-        <!-- <tr>
-          <td><button onclick="proximamente()"><p>Método de Bisección*</p></button></td>
+          <td><button id="btnLagDos"><p>Interpolación Lagrange 2G</p></button></td>
         </tr>
 
         <tr>
-          <td><button onclick="proximamente()"><p>Método de la Secante*</p></button></td>
-        </tr> -->
-
-        <tr>
-          <td><button onclick="newton()"><p class="newton"><img width="30" src="https://www.rethinkdata.net/wp-content/uploads/2018/09/New-Image.png"> Método Newton-Raphson</p></button></td>
+          <td><button id="btnNewton" class="newton"><p class="newton"><img width="30" src="https://www.rethinkdata.net/wp-content/uploads/2018/09/New-Image.png"> Método Newton-Raphson</p></button></td>
         </tr>
 
 
         <tr>
-          <td><button onclick="valorRelativo()"><p class="hello2">Error Verdadero y Relativo</p></button></td>
+          <td><button id="btnErrorVR"><p class="hello2">Error Verdadero y Relativo</p></button></td>
         </tr>
         <tr>
-          <td><button onclick="anunciarPopUp('Redirigiendo...', 'Pulsa OK', 'info', 3000, window.location.href='src/formulas.html');"><p class="formulas">Formulas y más</p></button></td>
+          <td><button id="btnFormulas"><p class="formulas">Formulas y más</p></button></td>
         </tr>
 
       </table>
       
     </div>
-    
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="src/js/main.js" type="module" ></script>
     </body>
 
 </html>
