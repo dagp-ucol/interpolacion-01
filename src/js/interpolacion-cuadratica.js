@@ -1,3 +1,7 @@
+// Métodos Numéricos
+// Alumnos: Diego Gentner Polanco & Brandon Tapia
+// 2do Semestre Grupo "H"
+
 export default class InterCuadratica {
 
     constructor(x,x0,x1,x2,fx0,fx1,fx2) {

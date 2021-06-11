@@ -1,5 +1,5 @@
-// Programación Orientada a Objetos
-// Alumno: Diego Alejandro Gentner Polanco
+// Métodos Numéricos
+// Alumnos: Diego Gentner Polanco & Brandon Tapia
 // 2do Semestre Grupo "H"
 
 import InterLineal from './interpolacion-lineal.js'
@@ -152,7 +152,6 @@ class App {
 new App() // App Execution
 
 
-
 /* Reutilizables 2.0 - - - - - -
 
     getUserDataAndComprobar = 
@@ -176,6 +175,7 @@ const getUserDataAndComprobar = (data, know) => {
 
 }
 
+
 const comprobar = (value) => {
   if (Number.isNaN(Number(value)) == true || value === undefined || value == '' || value == null) {
       if (value == null) {
@@ -193,6 +193,7 @@ const comprobar = (value) => {
   }
 }
 
+
 // Es necesaria para ciertas funciones
 function valorRelativoReutilizable(valorReal, valorAprox) {
 
@@ -207,16 +208,19 @@ function valorRelativoReutilizable(valorReal, valorAprox) {
 
 }
 
+
 // Indica no disponibilidad
 function noDisponible(value) {
   anunciarPopUp('NO DISPONIBLE', value, 'error');
 }
+
 
 // Aborta toda ejecucion
 function javascript_abort()
 {
  throw new Error('THIS IS NOT AN ERROR - JAVASCRIPT ABORT');
 }
+
 
 // Esta Funcion es importante
 function anunciarResultado(value) {
@@ -242,6 +246,7 @@ const Toast = Swal.mixin({
     toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
 })
+
 
 async function anunciarPopUp(messageAlert ,errorMessage, typeMessage, tiempo, otro) {
   let timerInterval

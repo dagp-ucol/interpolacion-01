@@ -1,3 +1,7 @@
+// Métodos Numéricos
+// Alumnos: Diego Gentner Polanco & Brandon Tapia
+// 2do Semestre Grupo "H"
+
 export default class NewtonRaphson {
 
     constructor(x0, iteraciones) {

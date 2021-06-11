@@ -1,3 +1,7 @@
+// Métodos Numéricos
+// Alumnos: Diego Gentner Polanco & Brandon Tapia
+// 2do Semestre Grupo "H"
+
 export default class InterLagrange {
 
     constructor(x,x0,x1,fx0,fx1,x2 = 'X2 = No necesario',fx2 = 'FX2 = No necesario') {
