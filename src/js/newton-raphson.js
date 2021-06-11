@@ -14,14 +14,10 @@ export default class NewtonRaphson {
     
             let fx = (2*Math.cos(this._x0)-Math.exp(this._x0)).toFixed(5);
             let dfx = (-2*Math.sin(this._x0)-Math.exp(this._x0)).toFixed(5);
-            x0 = x0 - ((fx/dfx)).toFixed(5);
+            this._x0 = this._x0 - ((fx/dfx)).toFixed(5);
         
-          }     
+          }
+          return this._x0;     
     }
-
-    _denyOperations() {
-        
-    }
-    
 
 } // InterLineal Class Finale

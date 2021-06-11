@@ -5,11 +5,13 @@
 import InterLineal from './interpolacion-lineal.js'
 import InterCuadratica from './interpolacion-cuadratica.js'
 import InterLagrange from './interpolacion-lagrange.js'
-import
+import NewtonRaphson from './newton-raphson.js';
 
 
 class App {
 
+
+  // Funcionalidad de Botones, aqui se decide que se ejecuta tras la pulsacion de cada boton
   constructor() {
         
     let btnRegLineal = document.querySelector('#btnLineal');
@@ -24,12 +26,13 @@ class App {
     btnRegCuadratica.addEventListener('click', this._interCuadratica);
     btnRegLagUno.addEventListener('click', this._interLangUno);
     btnRegLagDos.addEventListener('click', this._interLangDos);
-    btnRegNewton.addEventListener('click', newton);
+    btnRegNewton.addEventListener('click', this.newton);
     btnRegErrorVR.addEventListener('click', this.valorRelativo);
-    btnRegFormulas.addEventListener('click', noDisponible);
+    btnRegFormulas.addEventListener('click', this.redirect);
 
   }
 
+  // Funciones de App Class
 
   async _interLineal() {
     
@@ -119,12 +122,28 @@ class App {
   }
 
 
+  async newton() {
 
+    await Swal.fire('', 'Solo puedes usar un maximo de 100 iteraciones');
+    await Swal.fire('', 'Esta función utiliza la ecuación: 2cos(x)-e^x y usa solo 5 decimales!');
+      
+    let x0 = getUserDataAndComprobar('x0', true)
+    let iteraciones = Math.abs((prompt('¿Cuántas Iteraciones?')));
+    iteraciones = comprobar(iteraciones);
+    if (iteraciones > 100) {
+      noDisponible('Demasiadas Iteraciones - MAX 100')
+    } 
+    
+    x0 = new NewtonRaphson(x0, iteraciones);
+    comprobar(x0.getAnswer())
+  
+    anunciarResultado(`El resultado es:${x0.getAnswer()} con ${valorRelativoReutilizable(0.53978, x0.getAnswer())}`)
+    return x0
+  }
 
-
-
-
-
+  async redirect() {
+    anunciarPopUp('Redirigiendo...', 'Pulsa OK', 'info', 3000, window.location.href='src/formulas.html')
+  }
 
 
 } // App Class Finale
@@ -174,180 +193,7 @@ const comprobar = (value) => {
   }
 }
 
-async function getData2() {
-
-  return await Swal.fire({
-    title: 'Input email address',
-    input: 'text',
-    inputLabel: 'Your email address',
-    inputPlaceholder: 'Enter your email address'
-  })
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function newton() {
-
-  await Swal.fire('', 'Solo puedes usar un maximo de 100 iteraciones');
-  await Swal.fire('', 'Esta función utiliza la ecuación: 2cos(x)-e^x y usa solo 5 decimales!');
-    
-  let x0 = getUserDataAndComprobar('x0', true)
-
-  let iteraciones = Math.abs((prompt('¿Cuántas Iteraciones?')));
-  iteraciones = comprobar(iteraciones);
-  if (iteraciones > 100) {
-    noDisponible('Demasiadas Iteraciones - MAX 100')
-  } 
-  
-
-  anunciarResultado(`El resultado es:${x0} con ${valorRelativoReutilizable(0.53978, x0)}`)
-  return x0
-}
-
-
-
-
-// Funciones Reutilizables
-
-function noDisponible(value) {
-    anunciarPopUp('NO DISPONIBLE', value = 'BETA ERROR', 'error');
-}
-
-function proximamente() {
-    anunciarPopUp('Proximamente disponible' ,'', 'info')
-}
-
-
-
-function javascript_abort()
-{
-   throw new Error('THIS IS NOT AN ERROR - JAVASCRIPT ABORT');
-}
-
-function anunciarResultado(value) {
-  console.log('Resultado = ' + value);
-  if (Number.isNaN(value) == true) {
-      anunciarPopUp('El resultado es indefinido.', '', 'info');
-  } else {
-      anunciarPopUp('El resultado es:', '' + value, 'success');
-  }
-}
-
-function anunciarPopUp(messageAlert ,errorMessage, typeMessage, tiempo, otro) {
-    let timerInterval
-    Swal.fire({
-      title: 'VALIDANDO...',
-      html: 'ESPERE UN MOMENTO',
-      timer: tiempo = 500,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading()
-        timerInterval = setInterval(() => {
-          const content = Swal.getContent()
-          if (content) {
-            const b = content.querySelector('b')
-            if (b) {
-              b.textContent = Swal.getTimerLeft()
-            }
-          }
-        }, 100)
-      },
-      willClose: () => {
-        Swal.fire(messageAlert, errorMessage, typeMessage);
-        clearInterval(timerInterval)
-      }
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        otro;
-      }
-    })
-    return javascript_abort();
-}
-
-
-function convertToNumber(value) {
-    return Number(value);
-}
-
-
-
-// Sweet Alert
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 1200,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
-
+// Es necesaria para ciertas funciones
 function valorRelativoReutilizable(valorReal, valorAprox) {
 
   let errorVerdadero = valorReal - valorAprox;
@@ -361,28 +207,70 @@ function valorRelativoReutilizable(valorReal, valorAprox) {
 
 }
 
-// async function inputNumber(desc) {
+// Indica no disponibilidad
+function noDisponible(value) {
+  anunciarPopUp('NO DISPONIBLE', value, 'error');
+}
 
-// const { value: resul } = await Swal.fire({
-//   title: desc,
-//   input: 'number',
-//   inputLabel: '',
-//   inputValue: '',
-//   showCancelButton: true,
-//   inputValidator: (value) => {
-//     if (!value) {
-//       return 'You need to write something!'
-//     }
-//   }
-// })
+// Aborta toda ejecucion
+function javascript_abort()
+{
+ throw new Error('THIS IS NOT AN ERROR - JAVASCRIPT ABORT');
+}
 
-// }
+// Esta Funcion es importante
+function anunciarResultado(value) {
+console.log('Resultado = ' + value);
+if (Number.isNaN(value) == true) {
+    anunciarPopUp('El resultado es indefinido.', '', 'info');
+} else {
+    anunciarPopUp('El resultado es:', '' + value, 'success');
+}
+}
 
 
-// SwwetAlert2 ALERTS
+// Sweet Alert Commands
 
-//  - success
-//  - error
-//  - warning
-//  - info
-//  - question
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 1200,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+async function anunciarPopUp(messageAlert ,errorMessage, typeMessage, tiempo, otro) {
+  let timerInterval
+  Swal.fire({
+    title: 'VALIDANDO...',
+    html: 'ESPERE UN MOMENTO',
+    timer: tiempo = 500,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading()
+      timerInterval = setInterval(() => {
+        const content = Swal.getContent()
+        if (content) {
+          const b = content.querySelector('b')
+          if (b) {
+            b.textContent = Swal.getTimerLeft()
+          }
+        }
+      }, 100)
+    },
+    willClose: () => {
+      Swal.fire(messageAlert, errorMessage, typeMessage);
+      clearInterval(timerInterval)
+    }
+  }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+      otro;
+    }
+  })
+  return javascript_abort();
+}
