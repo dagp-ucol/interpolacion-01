@@ -13,7 +13,7 @@ Grupo: 2°H
 
 Fecha de Entrega 1er Parcial: 18/Abril/2021
 
-Fecha de Entrega 2da Parcial: 18/Junio/2021
+Fecha de Entrega 2da Parcial: 14/Junio/2021
 
 La entrega consiste en 2 partes una app de Android y a su vez una pagina web que puede ser desplegada, ambos se encuentran su código dentro de este repositorio así como el respectivo APK y además en la parte inferior esta un Link para probar el Demo del trabajo ya funcionando.
 
