@@ -1,5 +1,5 @@
-// Programación Orientada a Objetos
-// Alumno: Diego Alejandro Gentner Polanco
+// Métodos Numéricos
+// Alumnos: Diego Gentner & Brandon Tapia
 // 2do Semestre Grupo "H"
 
 function interLineal() {
