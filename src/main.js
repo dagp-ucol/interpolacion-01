@@ -20,6 +20,7 @@ function interLineal() {
 
     
     let resultado = (((fx0)+(((fx1)-(fx0))/((x1)-(x0)))*((x)-(x0))));
+    comprobar(resultado);
     
         anunciarResultado(resultado);
         return resultado;
@@ -53,6 +54,7 @@ function interCuadratica() {
     let op1 = ((fx1-fx0)/(x1-x0));
     let op2 = (((fx2-fx1)/(x2-x1))-((fx1-fx0)/(x1-x0)))/(x2-x0);
     let resultado = ((fx0) + (op1*(x-x0)) + (op2*(x-x0)*(x-x1)));
+    comprobar(resultado);
     
         console.log(op1);
         console.log(op2);
@@ -78,7 +80,8 @@ function interLagrangeUNO() {
     let fx1= (prompt('Introduce FX1 -> (Valor ya conocido)'));
     fx1 = comprobar(fx1);
 
-    let resultado = ((((x-x1)/(x0-x1))*(fx0))+(((x-x0)/(x1-x0))*(fx1)));       
+    let resultado = ((((x-x1)/(x0-x1))*(fx0))+(((x-x0)/(x1-x0))*(fx1)));
+    comprobar(resultado);
     
         anunciarResultado(resultado);
         return resultado;    
@@ -112,6 +115,7 @@ function interLagrangeDOS() {
     let op2 = ((((x-x0)/(x1-x0))*((x-x2)/(x1-x2)))*fx1);
     let op3 = ((((x-x0)/(x2-x0))*((x-x1)/(x2-x1)))*fx2);
     let resultado = (op1 + op2 + op3);
+    comprobar(resultado);
     
         anunciarResultado(resultado);
         return resultado;
@@ -159,7 +163,7 @@ async function newton() {
     x0 = x0 - ((fx/dfx)).toFixed(5);
 
   }
-
+  comprobar(x0);
 
   anunciarResultado(`El resultado es:${x0} con ${valorRelativoReutilizable(0.53978, x0)}`)
   return x0
